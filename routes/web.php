@@ -26,7 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/', [HomeController::class, 'home']);
 	Route::get('dashboard', function () {
-		return view('dashboard');
+        $opportunities = \App\Models\HistoricalPrice::latest()->take(10)->get();
+        return view('dashboard', compact('opportunities'));
 	})->name('dashboard');
 
 	Route::get('billing', function () {
@@ -86,3 +87,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/login', function () {
     return view('session/login-session');
 })->name('login');
+
+
+
+
+
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/arbitrage/historical', [App\Http\Controllers\ArbitrageController::class, 'historical'])->name('arbitrage.historical');
+});

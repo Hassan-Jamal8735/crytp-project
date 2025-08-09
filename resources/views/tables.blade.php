@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
+  <!-- <main class="main-content position-relative max-height-vh-100 h-100 mt-1 border-radius-lg ">
     <div class="container-fluid py-4">
       <div class="row">
         <div class="col-12">
@@ -423,6 +423,6 @@
         </div>
       </div>
     </div>
-  </main>
+  </main> -->
   
   @endsection

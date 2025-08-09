@@ -2,7 +2,7 @@
 
 @section('content')
 
-  <div class="section min-vh-85 position-relative transform-scale-0 transform-scale-md-7">
+  <!-- <div class="section min-vh-85 position-relative transform-scale-0 transform-scale-md-7">
     <div class="container">
       <div class="row pt-10">
         <div class="col-lg-1 col-md-1 pt-5 pt-lg-0 ms-lg-5 text-center">
@@ -136,6 +136,6 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
 
 @endsection
