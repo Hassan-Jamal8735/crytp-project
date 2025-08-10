@@ -53,7 +53,8 @@
   @guest
     @yield('guest')
   @endguest
-
+@push('js')
+@endpush
   @if(session()->has('success'))
     <div x-data="{ show: true}"
         x-init="setTimeout(() => show = false, 4000)"
@@ -63,14 +64,24 @@
     </div>
   @endif
     <!--   Core JS Files   -->
+       
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/fullcalendar.min.js"></script>
-  <script src="../assets/js/plugins/chartjs.min.js"></script>
+  <!-- <script src="../assets/js/plugins/chartjs.min.js"></script> -->
   @stack('rtl')
   @stack('dashboard')
+   <!-- Add this for Livewire scripts -->
+  @livewireScripts
+  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-chart-financial@3.3.0/dist/chartjs-chart-financial.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-date-fns"></script>
+
+
+  @stack('scripts')
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
     if (win && document.querySelector('#sidenav-scrollbar')) {

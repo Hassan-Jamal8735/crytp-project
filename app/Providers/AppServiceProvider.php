@@ -8,6 +8,9 @@ use App\Services\LocalAIService;
 use App\Services\ArbitrageAIService;
 use Llama;
 use App\Services\LlamaClient;
+use Illuminate\Support\Facades\Http;
+use Livewire\Livewire;
+use App\Http\Livewire\PriceChart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -43,6 +46,28 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+         Livewire::component('price-chart', PriceChart::class);
+        
+        // Your existing service bindings
+        $this->app->bind(ArbitrageService::class, function($app) {
+            return new ArbitrageService();
+        });
+          Http::macro('binance', function() {
+            return Http::withOptions([
+                'verify' => false,
+                'timeout' => 15,
+                'curl' => [
+                    CURLOPT_SSL_VERIFYPEER => false,
+                    CURLOPT_SSL_VERIFYHOST => false
+                ]
+            ])->baseUrl('https://api.binance.com/api/v3');
+        });
+        
+        Http::macro('coinbase', function() {
+            return Http::withOptions([
+                'verify' => false,
+                'timeout' => 15
+            ])->baseUrl('https://api.coinbase.com/v2');
+        });
     }
 }

@@ -96,3 +96,10 @@ Route::get('/login', function () {
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/arbitrage/historical', [App\Http\Controllers\ArbitrageController::class, 'historical'])->name('arbitrage.historical');
 });
+
+
+Route::get('/test-chart', function() {
+    return view('test-chart', [
+        'prices' => \App\Models\HistoricalPrice::latest()->take(100)->get()
+    ]);
+});
